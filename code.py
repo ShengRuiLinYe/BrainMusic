@@ -18,7 +18,7 @@ while condition:
         print("please input the string you wanna encrypt:")
         try:
             string = input().encode('utf-8')
-            print("the string has been encrypted:",hashlib.sha256("1234567").digest())
+            print("the string has been encrypted:",str(hashlib.sha256(string).digest()))
         except TypeError:
             print("this strange string can't be encryted now, sorry.")
     elif order == 'base64':
@@ -29,17 +29,16 @@ while condition:
             try:
                 string = input().encode('utf-8')
                 encoded = base64.b64encode(string)
-                print("the string has been encrypted:", encoded)
+                print("the string has been encrypted:", str(encoded))
             except TypeError:
                 print("this strange string can't be encryted now, sorry.")
 
         elif choice == 'd':
             print("please input the string you wanna encrypt:")
             try:
-                print("please input the string you wanna decrypt:")
                 string = input().encode('utf-8')
-                decoded = base64.b64decode("1234567")
-                print("the string has been encrypted:", decoded)
+                decoded = base64.b64decode(string)
+                print("the string has been encrypted:", str(decoded))
             except TypeError :
                 print("this strange string can't be decryted now, sorry.")
         else:
@@ -54,5 +53,3 @@ while condition:
 
     else:
         print("check your input, it is wrong! Try again.")
-
-
