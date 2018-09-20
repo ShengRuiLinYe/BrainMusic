@@ -24,25 +24,34 @@ while condition:
         except TypeError:
             print("this strange string can't be encryted now, sorry.")
     elif order == 'base64':
-        print("Welcome to base64, you can choose encrypt with 'e'  or decrypt with 'd'")
-        choice = input()
-        if choice == 'e':
-            print("please input the string you wanna encrypt:")
-            try:
-                string = input().encode('utf-8')
-                encoded = base64.b64encode(string)
-                print("the string has been encrypted:", encoded.decode())
-            except TypeError:
-                print("this strange string can't be encryted now, sorry.")
+        print("Welcome to base64, you can choose encrypt with 'e'  or decrypt with 'd'\n"
+              "if you want to get out of this mode, please input 'out'")
+        while True:
+            print("make your decision with 'e' 'd' or 'out'")
+            choice = input()
+            if choice == 'out':
+                break
+            elif choice == 'e':
+                print("please input the string you wanna encrypt:")
+                try:
+                    string = input().encode('utf-8')
+                    encoded = base64.b64encode(string)
+                    print("the string has been encrypted:", encoded.decode())
+                except TypeError:
+                    print("this strange string can't be encryted now, sorry.")
 
-        elif choice == 'd':
-            print("please input the string you wanna encrypt:")
-            try:
-                string = input().encode('utf-8')
-                decoded = base64.b64decode(string)
-                print("the string has been encrypted:", decoded.decode())
-            except binascii.Error :
-                print("this strange string is not base64 code, sorry.")
+            elif choice == 'd':
+                print("please input the string you wanna encrypt:")
+                try:
+                    string = input().encode('utf-8')
+                    decoded = base64.b64decode(string)
+                    print("the string has been encrypted:", decoded.decode())
+                except binascii.Error :
+                    print("this strange string is not base64 code, sorry.")
+                except UnicodeDecodeError:
+                    print("this strange string is not base64 code, sorry.")
+            else:
+                print("Wrong intruction! Try again.")
         else:
             print("sorry, you entered wrong instruction.")
 
