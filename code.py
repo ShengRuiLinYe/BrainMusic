@@ -2,6 +2,7 @@ import hashlib
 import base64
 import qrcode
 import sys
+import binascii
 condition = True
 while condition:
     print("NOTICE: input 'sha256' to encrypt string in sha256 way;\n"
@@ -18,7 +19,8 @@ while condition:
         print("please input the string you wanna encrypt:")
         try:
             string = input().encode('utf-8')
-            print("the string has been encrypted:",str(hashlib.sha256(string).digest()))
+            encoded = hashlib.sha256(string).hexdigest()
+            print("the string has been encrypted:",encoded)
         except TypeError:
             print("this strange string can't be encryted now, sorry.")
     elif order == 'base64':
@@ -29,7 +31,7 @@ while condition:
             try:
                 string = input().encode('utf-8')
                 encoded = base64.b64encode(string)
-                print("the string has been encrypted:", str(encoded))
+                print("the string has been encrypted:", encoded.decode())
             except TypeError:
                 print("this strange string can't be encryted now, sorry.")
 
@@ -38,9 +40,9 @@ while condition:
             try:
                 string = input().encode('utf-8')
                 decoded = base64.b64decode(string)
-                print("the string has been encrypted:", str(decoded))
-            except TypeError :
-                print("this strange string can't be decryted now, sorry.")
+                print("the string has been encrypted:", decoded.decode())
+            except binascii.Error :
+                print("this strange string is not base64 code, sorry.")
         else:
             print("sorry, you entered wrong instruction.")
 
